@@ -1,0 +1,29 @@
+<div class="main">
+    <menu-bar />
+    <div class="inner-main">
+        <div class="content-saver">
+            <div class="input-group">
+                <span class="input-group-text">Iqtibos:</span>
+                <textarea [(ngModel)]="quoteBody.body" [disabled]="isLoading" class="form-control" placeholder="Iqtibos" aria-label="With textarea"></textarea>
+            </div>
+            <div class="warn-handler">
+                <p class="warn-msg">{{warnMsg}}</p>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Muallif:</span>
+                <input [(ngModel)]="quoteBody.author" [disabled]="isLoading" type="text" class="form-control" placeholder="Muallif yoki manba" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <button (click)="createQuote()" [disabled]="isLoading" class="btn btn-success submit-btn">
+                @if(isLoading){
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                }
+                @else {
+                    Jo'natish
+                }
+            </button>
+        </div>
+    </div>
+</div>

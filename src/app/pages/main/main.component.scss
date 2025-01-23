@@ -1,0 +1,44 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(17, 239, 132);
+}
+
+.inner-main {
+    width: 100%;
+    min-height: 92vh;
+
+    display: flex;
+    align-items: center;
+}
+
+.content-saver {
+    width: 100%;
+}
+
+.warn-handler {
+    height: 25px;
+}
+
+.warn-msg {
+    color: red;
+    line-height: 15px;
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+@media only screen and (min-width: 601px) {
+    .inner-main {
+        padding-left: 30vw;
+        padding-right: 30vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .inner-main {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+}
