@@ -1,6 +1,7 @@
 import { MessageService } from 'primeng/api';
 import { QuoteService } from './../../service/quote/quote.service';
 import { Component } from '@angular/core';
+import { TelegramService } from '../../service/telegram/telegram.service';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,16 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
-  constructor(private quoteService: QuoteService, private messageService: MessageService) { }
+  constructor(private quoteService: QuoteService, private messageService: MessageService, private telegramService:TelegramService) { }
+
+  ngOnInit(): void {
+    if (this.telegramService.isTelegramWebAppAvailable) {
+      let user = this.telegramService.user;
+      console.log(user)
+    } else {
+      console.error('Telegram Web App is not available.');
+    }
+  }
 
   warnMsg: string = ""
   isLoading: boolean = false
