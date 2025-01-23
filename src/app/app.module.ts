@@ -7,6 +7,11 @@ import { MainComponent } from './pages/main/main.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -18,9 +23,15 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    ToastModule,
+    RippleModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
