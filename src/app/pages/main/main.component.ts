@@ -12,10 +12,11 @@ export class MainComponent {
 
   constructor(private quoteService: QuoteService, private messageService: MessageService, private telegramService:TelegramService) { }
 
+  user:any
   ngOnInit(): void {
     if (this.telegramService.isTelegramWebAppAvailable) {
-      let user = this.telegramService.user;
-      console.log(user)
+      this.user = this.telegramService.user;
+      console.log(this.user)
     } else {
       console.error('Telegram Web App is not available.');
     }
