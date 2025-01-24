@@ -10,20 +10,31 @@ import { TelegramService } from '../../service/telegram/telegram.service';
 })
 export class MainComponent {
 
-  constructor(private quoteService: QuoteService, private messageService: MessageService, private telegramService:TelegramService) { }
+  constructor(private quoteService: QuoteService, private messageService: MessageService, private telegramService: TelegramService) { }
 
-  user:any
-  something:any
+  user: any
+  something: any
   ngOnInit(): void {
-    if (this.telegramService.isTelegramWebAppAvailable) {
-      this.user = this.telegramService.user;
-      this.something=this.user.id
-      console.log(this.user)
+    const telegram = (window as any).Telegram?.WebApp;
+
+    if (telegram) {
+      console.log('Telegram WebApp object is available:', telegram);
+      telegram.ready(); // Initialize Telegram Web App
+
+      this.user = telegram.initDataUnsafe?.user;
+      if (this.user) {
+        this.something = this.user.id;
+        console.log('User info:', this.user);
+      } else {
+        this.something = 'User data is not available';
+        console.error('User data is null or undefined.');
+      }
     } else {
-      this.something="not working"
-      console.error('Telegram Web App is not available.');
+      this.something = 'not working';
+      console.error('Telegram Web App is not available. Are you testing outside Telegram?');
     }
   }
+
 
   warnMsg: string = ""
   isLoading: boolean = false
@@ -46,7 +57,7 @@ export class MainComponent {
 
     if (this.quoteBody.author != null) {
       this.quoteBody.author = this.quoteBody.author!.trim()
-      if(this.quoteBody.author==""){
+      if (this.quoteBody.author == "") {
         this.quoteBody.author = null
       }
     }
