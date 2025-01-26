@@ -12,12 +12,20 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
 import { MessageService } from 'primeng/api';
+import { RegisterComponent } from './components/register/register.component';
+import { AddQuoteComponent } from './components/add-quote/add-quote.component';
+import { MyQuotesComponent } from './components/my-quotes/my-quotes.component';
+import { InputOtpModule } from 'primeng/inputotp';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    RegisterComponent,
+    AddQuoteComponent,
+    MyQuotesComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,9 @@ import { MessageService } from 'primeng/api';
     BrowserAnimationsModule,
     ButtonModule,
     ToastModule,
-    RippleModule
+    RippleModule,
+    InputOtpModule,
+    TooltipModule
   ],
   providers: [
     MessageService

@@ -1,0 +1,24 @@
+<div class="main">
+    <div class="big-content-handler">
+        <div class="inner-main">
+            <h4 class="main-header">
+                Mini Ilovani ishlatish uchun botga: <span class="code">/gettempcode</span> ni yuboring. <br>
+                Va uni shu yerga kiriting😊
+            </h4>
+            <div class="content-handler">
+                <p-inputOtp (onChange)="warnMsg=''" [(ngModel)]="tempCode" [integerOnly]="true" [length]=6 />
+            </div>
+            <p class="warn-msg">{{warnMsg}}</p>
+            <button [disabled]="isLoading" (click)="submit()" class="submit-btn btn btn-success mt-3">
+                @if(isLoading){
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                }
+                @else {
+                    Tasdiqlash
+                }
+            </button>
+        </div>
+    </div>
+</div>

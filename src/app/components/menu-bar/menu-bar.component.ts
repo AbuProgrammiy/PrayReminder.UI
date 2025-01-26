@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'menu-bar',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent {
+  @Output() mode = new EventEmitter()
 
+  changeMode(mode:string) {
+    this.mode.emit(mode)
+  }
 }

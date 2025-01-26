@@ -1,11 +1,11 @@
 <ul class="bg-success nav nav-pills nav-fill gap-2 p-1 small rounded-5 shadow-sm" id="pillNav2" role="tablist"
     style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-success); --bs-nav-pills-link-active-bg: var(--bs-white);">
     <li class="nav-item" role="presentation">
-        <button class="menu-button nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button"
+        <button (click)="changeMode('add-quote')" class="menu-button nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button"
             role="tab" aria-selected="true">Iqtibos qo'shish</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab"
+        <button (click)="changeMode('my-quotes')" class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab"
             aria-selected="false">Mening iqtiboslarim</button>
     </li>
 </ul>

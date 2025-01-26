@@ -5,3 +5,17 @@
 *{
     margin: 0;
 }
+
+.content-handler{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.big-content-handler{
+    width: 100%;
+    min-height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
