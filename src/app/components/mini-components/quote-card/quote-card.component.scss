@@ -1,0 +1,23 @@
+.accepted-header {
+    background-color: rgba($color: rgb(17, 239, 132), $alpha: 0.5);
+}
+
+.pending-header {
+    background-color: rgba($color: rgb(232, 238, 50), $alpha: 0.5);
+}
+
+.canceled-header {
+    background-color: rgba($color: rgb(240, 116, 116), $alpha: 0.5);
+}
+
+.card{
+    transition: 0.5s;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px white;
+}
+
+.process{
+    text-align: end;
+}

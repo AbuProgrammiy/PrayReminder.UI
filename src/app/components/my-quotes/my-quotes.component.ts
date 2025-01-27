@@ -5,6 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './my-quotes.component.html',
   styleUrl: './my-quotes.component.scss'
 })
-export class MyQuotesComponent {
 
+export class MyQuotesComponent {
+  sample = {
+    firstName: "Abduxoliq",
+    lastName: "Muhammadaminov",
+    username: "abuprogrammiy",
+    quote:"hello mellow",
+    author:"pillow",
+    process:0
+  }
 }
