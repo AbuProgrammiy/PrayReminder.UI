@@ -29,7 +29,7 @@ export class RegisterComponent {
       next: (response) => {
         if (response.statusCode == 200) {
           this.messageService.add({ severity: 'success', summary: 'Muvaffaqiyat', detail: 'Xush kelibsiz' });
-          localStorage.setItem("user", JSON.stringify(response))
+          localStorage.setItem("user", JSON.stringify(response.response))
           localStorage.setItem("isUserRegistered", "true")
 
           this.mode.emit("add-quote")

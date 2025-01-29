@@ -16,7 +16,7 @@ export class QuoteService {
     return this.httpClient.post(`${this.baseUrl}/Quote/Create`, body)
   }
 
-  getMyQuotes(): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/Quote/Create`)
+  getMyQuotes(userId:number): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/Quote/GetByUserId/${userId}`)
   }
 }

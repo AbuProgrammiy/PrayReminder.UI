@@ -10,9 +10,17 @@ import { TelegramService } from '../../service/telegram/telegram.service';
 })
 export class MainComponent {
   mode!:string
+  userRole:any
 
   constructor(){
     if(typeof localStorage !=="undefined"){
+
+      const role=localStorage.getItem("user")
+
+      if(role){
+        this.userRole=JSON.parse(role).role
+      }
+
       if(localStorage.getItem("isUserRegistered")=="true"){
         this.mode="add-quote"
       }

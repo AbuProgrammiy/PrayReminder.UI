@@ -15,7 +15,7 @@ export class AddQuoteComponent {
   isLoading: boolean = false
 
   quoteBody: QuoteBody = {
-    userId:JSON.parse(localStorage.getItem("user")!).response.id,
+    userId:JSON.parse(localStorage.getItem("user")!).id,
     body: "",
     author: null
   }

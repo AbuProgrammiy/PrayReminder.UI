@@ -1,24 +1,28 @@
 <div class="card">
     <div class="card-header" [ngClass]="{'pending-header':data.process==0,'accepted-header':data.process==1,'canceled-header':data.process==2}">
-        {{data.firstName}} {{data.lastName}}
-        @if(data.username){
-            | &#64;{{data.username}}
-        }
+        <span style="text-align: start;">
+            {{data.user.firstName}} {{data.user.lastName}}
+            @if(data.user.username){
+                | &#64;{{data.user.username}}
+            }
+        </span>
         <span class="process">
-            @if (data.process==1) {
-                qabul qilingan
-            }
-            @else if (data.process==0) {
-                kutilyapti
-            }
-            @else if(data.process==2) {
-                rad qilindi
-            }
+            <strong>
+                @if (data.process==1) {
+                    qabul qilingan
+                }
+                @else if (data.process==0) {
+                    kutilyapti
+                }
+                @else if(data.process==2) {
+                    rad qilindi
+                }
+            </strong>
         </span>
     </div>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
-            <p>{{data.quote}}</p>
+            <p>{{data.body}}</p>
             <footer class="blockquote-footer">{{data.author}}</footer>
         </blockquote>
     </div>
