@@ -42,6 +42,10 @@ export class AdminPanelComponent {
     this.quotes
   }
 
+  refreshList(somethig:any){
+
+  }
+
   getAll() {
     this.isLoading = true
 
