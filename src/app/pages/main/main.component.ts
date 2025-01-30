@@ -16,10 +16,10 @@ export class MainComponent {
   constructor(private userservice:UserService){
     if(typeof localStorage !=="undefined"){
 
-      const role=localStorage.getItem("user")
+      const user=localStorage.getItem("user")
 
-      if(role){
-        this.userRole=JSON.parse(role).role
+      if(user){
+        this.userRole=JSON.parse(user).role
       }
 
       if(localStorage.getItem("isUserRegistered")=="true"){
