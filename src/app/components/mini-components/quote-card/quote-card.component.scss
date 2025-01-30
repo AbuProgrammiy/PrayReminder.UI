@@ -11,8 +11,7 @@
 }
 
 .card{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 30px;
     transition: 0.5s;
 }
 
@@ -22,4 +21,28 @@
 
 .process{
     text-align: end;
+}
+
+.admin-btns-handler{
+    display: flex;
+}
+
+.left{
+    width: 50%;
+}
+
+.right{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+
+.middle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.process-btn{
+    min-width: 150px;
 }

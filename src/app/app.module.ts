@@ -18,6 +18,7 @@ import { MyQuotesComponent } from './components/my-quotes/my-quotes.component';
 import { InputOtpModule } from 'primeng/inputotp';
 import { TooltipModule } from 'primeng/tooltip';
 import { QuoteCardComponent } from './components/mini-components/quote-card/quote-card.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { QuoteCardComponent } from './components/mini-components/quote-card/quot
     RegisterComponent,
     AddQuoteComponent,
     MyQuotesComponent,
-    QuoteCardComponent
+    QuoteCardComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

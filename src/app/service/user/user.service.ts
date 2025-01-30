@@ -15,4 +15,8 @@ export class UserService {
   checkTempCode(code:any):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/User/CheckTempCode/${code}`)
   }
+
+  getById(id:number):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/User/GetById?id=${id}`)
+  }
 }

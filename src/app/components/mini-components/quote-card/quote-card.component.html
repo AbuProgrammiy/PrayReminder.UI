@@ -27,3 +27,61 @@
         </blockquote>
     </div>
 </div>
+@if(adminFunctions){
+    <div class="admin-btns-handler">
+        @if(data.process==0){
+            <div class="left">
+                <button (click)="changeProcess(1,'accept')" class="btn btn-success process-btn">
+                    @if(acceptLoading){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    }
+                    @else {
+                        Qabul
+                    }
+                </button>
+            </div>
+            <div class="right">
+                <button (click)="changeProcess(2,'cancel')" class="btn btn-danger process-btn">
+                    @if(cancelLoading){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    }
+                    @else {
+                        Rad
+                    }
+                </button>
+            </div>
+        }
+        @else if(data.process==1){ 
+            <div class="middle">
+                <button (click)="changeProcess(2,'cancel')" class="btn btn-danger process-btn">
+                    @if(cancelLoading){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    }
+                    @else {
+                        Rad
+                    }
+                </button>
+            </div>
+        }
+        @else if(data.process==2){
+            <div class="middle">
+                <button (click)="changeProcess(1,'accept')" class="btn btn-success process-btn">
+                    @if(acceptLoading){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    }
+                    @else {
+                        Qabul
+                    }
+                </button>
+            </div>
+        }
+    </div>
+}

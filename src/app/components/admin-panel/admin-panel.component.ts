@@ -3,14 +3,13 @@ import { QuoteService } from '../../service/quote/quote.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'my-quotes',
-  templateUrl: './my-quotes.component.html',
-  styleUrl: './my-quotes.component.scss'
+  selector: 'admin-panel',
+  templateUrl: './admin-panel.component.html',
+  styleUrl: './admin-panel.component.scss'
 })
-
-export class MyQuotesComponent {
-  constructor(private quoteService: QuoteService, private messageService: MessageService) {
-    this.getAllMyQuotes()
+export class AdminPanelComponent {
+  constructor(private quoteService: QuoteService,private messageService:MessageService) {
+    this.getAll()
   }
 
   quotes: any
@@ -43,23 +42,16 @@ export class MyQuotesComponent {
     this.quotes
   }
 
-  getAllMyQuotes() {
+  getAll() {
     this.isLoading = true
 
-    let userId
-
-    if (typeof localStorage !== "undefined") {
-      userId = JSON.parse(localStorage.getItem("user")!).id
-      console.log(userId)
-    }
-
-    this.quoteService.getMyQuotes(userId).subscribe({
+    this.quoteService.getAll().subscribe({
       next: (response) => {
         console.log(response)
-        this.allQuotes = response.response
-        this.pendingQuotes = response.response.filter((q: any) => q.process == 0)
-        this.acceptedQuotes = response.response.filter((q: any) => q.process == 1)
-        this.canceledQuotes = response.response.filter((q: any) => q.process == 2)
+        this.allQuotes = response
+        this.pendingQuotes = response.filter((q: any) => q.process == 0)
+        this.acceptedQuotes = response.filter((q: any) => q.process == 1)
+        this.canceledQuotes = response.filter((q: any) => q.process == 2)
 
         this.quotes = this.allQuotes
 

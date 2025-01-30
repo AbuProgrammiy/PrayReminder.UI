@@ -5,10 +5,13 @@
     @else {
         <menu-bar (mode)="changeMode($event)" [userRole]="userRole"/>
         @if (mode=="add-quote") {
-            <add-quote (mode)="changeMode($event)"/>
+            <add-quote/>
         }
         @else if(mode=="my-quotes"){
             <my-quotes/>
+        }
+        @else if(mode=="admin-panel"){
+            <admin-panel/>
         }
     }
 </div>

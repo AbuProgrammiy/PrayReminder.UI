@@ -1,0 +1,22 @@
+.inner-main{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.quote-process-manager{
+    margin-top: 20px;
+}
+
+@media only screen and (min-width: 601px) {
+    .inner-main {
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .inner-main {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+}
