@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'template';
 
   constructor() {
-    this.saveData()
+    //this.saveData()
     this.loadData()
   }
 
