@@ -29,7 +29,7 @@
         } 
         @else {
             @for (quote of quotes; track $index) {
-                <quote-card [data]="quote" />
+                <quote-card [data]="quote" (changeStatus)="changeStatus($event)"/>
             }
         }
     </div>

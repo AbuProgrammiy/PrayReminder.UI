@@ -10,20 +10,26 @@ import { DatabaseService } from '../../service/database/database.service';
 })
 export class AddQuoteComponent {
 
-  constructor(private quoteService: QuoteService, private messageService: MessageService,private database:DatabaseService) { }
+  constructor(private quoteService: QuoteService, private messageService: MessageService, private database: DatabaseService) {
+    this.initateQuoteBody()
+  }
 
   warnMsg: string = ""
   isLoading: boolean = false
 
-  quoteBody: QuoteBody = {
-    userId:JSON.parse(this.getUserId()!).id,
+  quoteBody: QuoteBody= {
+    userId: 0,
     body: "",
     author: null
   }
 
-  getUserId(){
-    this.database.loadData("user").then(value=>{
-      return value
+  initateQuoteBody() {
+    this.database.loadData("user").then(value => {
+      this.quoteBody = {
+        userId: JSON.parse(value).id,
+        body: "",
+        author: null
+      }
     })
   }
 

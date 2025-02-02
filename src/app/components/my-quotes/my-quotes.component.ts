@@ -10,7 +10,7 @@ import { DatabaseService } from '../../service/database/database.service';
 })
 
 export class MyQuotesComponent {
-  constructor(private quoteService: QuoteService, private messageService: MessageService,private database:DatabaseService) {
+  constructor(private quoteService: QuoteService, private messageService: MessageService, private database: DatabaseService) {
     this.getAllMyQuotes()
   }
 
@@ -23,6 +23,8 @@ export class MyQuotesComponent {
   isLoading: boolean = false
 
   changeProcess(process: string) {
+    this.refereshQuotes()
+
     switch (process) {
       case "all":
         this.quotes = this.allQuotes
@@ -40,8 +42,12 @@ export class MyQuotesComponent {
         this.quotes = this.canceledQuotes
         break;
     }
+  }
 
-    this.quotes
+  refereshQuotes() {
+    this.pendingQuotes = this.allQuotes.filter((q: any) => q.process == 0)
+    this.acceptedQuotes = this.allQuotes.filter((q: any) => q.process == 1)
+    this.canceledQuotes = this.allQuotes.filter((q: any) => q.process == 2)
   }
 
   getAllMyQuotes() {
@@ -50,13 +56,17 @@ export class MyQuotesComponent {
     let userId
     let user
 
-    this.database.loadData('user').then(value=>{
-      user=value
+    this.database.loadData('user').then(value => {
+      user = value
+      userId = JSON.parse(user!).id
+
+      this.getAllMyQuotesRequest(userId)
+      console.log(userId)
     })
 
-    userId = JSON.parse(user!).id
-    console.log(userId)
+  }
 
+  getAllMyQuotesRequest(userId: number) {
     this.quoteService.getMyQuotes(userId).subscribe({
       next: (response) => {
         console.log(response)
@@ -76,5 +86,16 @@ export class MyQuotesComponent {
         this.isLoading = false
       }
     })
+  }
+
+  changeStatus(data: any) {
+    const quote = this.allQuotes.find((item: any) => item.id == data.id)
+
+    console.log("keldi")
+    console.log(quote)
+    quote.process = data.process
+
+    console.log(quote)
+    console.log(this.allQuotes.find((item: any) => item.id == data.id))
   }
 }

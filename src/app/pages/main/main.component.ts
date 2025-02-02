@@ -21,26 +21,25 @@ export class MainComponent {
 
     database.loadData("user").then(value => {
       user = value
+      if (user) {
+        this.userRole = JSON.parse(user).role
+      }
     })
-
-    if (user) {
-      this.userRole = JSON.parse(user).role
-    }
 
     let isUserRegistered
 
     database.loadData("isUserRegistered").then(value => {
       isUserRegistered = value
+
+      if (isUserRegistered == "true") {
+        this.getUser(JSON.parse(user!).id)
+  
+        this.mode = "add-quote"
+      }
+      else {
+        this.mode = "register"
+      }
     })
-
-    if (isUserRegistered == "true") {
-      this.getUser(JSON.parse(user!).id)
-
-      this.mode = "add-quote"
-    }
-    else {
-      this.mode = "register"
-    }
   }
 
   getUser(id: number) {
