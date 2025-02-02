@@ -11,10 +11,10 @@ export class DatabaseService {
   async saveData(key:string, value:string) {
     const db = await openDB('myDatabase', 1, {
       upgrade(db) {
-        db.createObjectStore('user');
+        db.createObjectStore('store');
       }
     });
-    await db.put('user', value, key);
+    await db.put('store', value, key);
   }
 
   async loadData(key:string) {
