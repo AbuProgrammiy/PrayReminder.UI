@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { openDB } from 'idb';
 
 @Component({
   selector: 'app-root',
@@ -8,37 +9,28 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'template';
 
-  storedData: string | null = "endi";
-
   constructor() {
-    if (window.Telegram) {
-      window.Telegram.WebApp.expand(); // Expands the Mini App
-    }
+    this.saveData()
+    this.loadData()
   }
 
-  // Save to Cloud Storage
-  saveData() {
-    window.Telegram.WebApp.CloudStorage.setItem('user_name', 'John Doe', (err: any) => {
-      if (err) {
-        console.error('Error saving data:', err);
-      } else {
-        alert('Data saved successfully!');
+  storedData: string | null = null;
+
+  async saveData() {
+    const db = await openDB('myDatabase', 1, {
+      upgrade(db) {
+        db.createObjectStore('store');
       }
     });
+    await db.put('store', 'John Doe', 'user_name');
+    alert('Data saved!');
   }
 
-  // Load from Cloud Storage
-  loadData() {
-    window.Telegram.WebApp.CloudStorage.getItem('user_name', (err: any, value: string) => {
-      if (err) {
-        console.error('Error retrieving data:', err);
-      } else {
-        this.storedData = value;
-        alert(`Stored Value: ${this.storedData}`);
-      }
-    });
+  async loadData() {
+    const db = await openDB('myDatabase', 1);
+    this.storedData = await db.get('store', 'user_name');
+    alert(`Stored Value: ${this.storedData}`);
   }
-
 }
 
 
