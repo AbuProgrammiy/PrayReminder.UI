@@ -19,6 +19,6 @@ export class DatabaseService {
 
   async loadData(key:string) {
     const db = await openDB('myDatabase', 1);
-    return await db.get('user', key);
+    return await db.get('store', key);
   }
 }
