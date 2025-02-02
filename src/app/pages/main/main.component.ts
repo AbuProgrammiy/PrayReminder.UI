@@ -3,6 +3,7 @@ import { QuoteService } from './../../service/quote/quote.service';
 import { Component } from '@angular/core';
 import { TelegramService } from '../../service/telegram/telegram.service';
 import { UserService } from '../../service/user/user.service';
+import { DatabaseService } from '../../service/database/database.service';
 
 @Component({
   selector: 'app-main',
@@ -10,43 +11,52 @@ import { UserService } from '../../service/user/user.service';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-  mode!:string
-  userRole:any
 
-  constructor(private userservice:UserService){
-    if(typeof localStorage !=="undefined"){
+  mode!: string
+  userRole: any
 
-      const user=localStorage.getItem("user")
+  constructor(private userservice: UserService, private database: DatabaseService) {
 
-      if(user){
-        this.userRole=JSON.parse(user).role
-      }
+    let user
 
-      if(localStorage.getItem("isUserRegistered")=="true"){
-        this.getUser(JSON.parse(localStorage.getItem("user")!).id)
+    database.loadData("user").then(value => {
+      user = value
+    })
 
-        this.mode="add-quote"
-      }
-      else{
-        this.mode ="register"
-      }
+    if (user) {
+      this.userRole = JSON.parse(user).role
+    }
+
+    let isUserRegistered
+
+    database.loadData("isUserRegistered").then(value => {
+      isUserRegistered = value
+    })
+
+    if (isUserRegistered == "true") {
+      this.getUser(JSON.parse(user!).id)
+
+      this.mode = "add-quote"
+    }
+    else {
+      this.mode = "register"
     }
   }
 
-  getUser(id:number){
+  getUser(id: number) {
     this.userservice.getById(id).subscribe({
-      next:(response)=>{
-        localStorage.setItem("user",JSON.stringify(response.response))
-        this.userRole=response.response.role
+      next: (response) => {
+        this.database.saveData("user", JSON.stringify(response.response))
+        this.userRole = response.response.role
         console.log(this.userRole)
       },
-      error:(err)=>{
+      error: (err) => {
 
       }
     })
   }
 
-  changeMode(mode:any){
-    this.mode=mode
+  changeMode(mode: any) {
+    this.mode = mode
   }
 }

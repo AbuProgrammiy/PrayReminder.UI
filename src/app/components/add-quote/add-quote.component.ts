@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { QuoteService } from '../../service/quote/quote.service';
 import { MessageService } from 'primeng/api';
+import { DatabaseService } from '../../service/database/database.service';
 
 @Component({
   selector: 'add-quote',
@@ -9,15 +10,21 @@ import { MessageService } from 'primeng/api';
 })
 export class AddQuoteComponent {
 
-  constructor(private quoteService: QuoteService, private messageService: MessageService) { }
+  constructor(private quoteService: QuoteService, private messageService: MessageService,private database:DatabaseService) { }
 
   warnMsg: string = ""
   isLoading: boolean = false
 
   quoteBody: QuoteBody = {
-    userId:JSON.parse(localStorage.getItem("user")!).id,
+    userId:JSON.parse(this.getUserId()!).id,
     body: "",
     author: null
+  }
+
+  getUserId(){
+    this.database.loadData("user").then(value=>{
+      return value
+    })
   }
 
   createQuote() {

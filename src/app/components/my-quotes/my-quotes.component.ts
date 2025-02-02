@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QuoteService } from '../../service/quote/quote.service';
 import { MessageService } from 'primeng/api';
+import { DatabaseService } from '../../service/database/database.service';
 
 @Component({
   selector: 'my-quotes',
@@ -9,7 +10,7 @@ import { MessageService } from 'primeng/api';
 })
 
 export class MyQuotesComponent {
-  constructor(private quoteService: QuoteService, private messageService: MessageService) {
+  constructor(private quoteService: QuoteService, private messageService: MessageService,private database:DatabaseService) {
     this.getAllMyQuotes()
   }
 
@@ -47,11 +48,14 @@ export class MyQuotesComponent {
     this.isLoading = true
 
     let userId
+    let user
 
-    if (typeof localStorage !== "undefined") {
-      userId = JSON.parse(localStorage.getItem("user")!).id
-      console.log(userId)
-    }
+    this.database.loadData('user').then(value=>{
+      user=value
+    })
+
+    userId = JSON.parse(user!).id
+    console.log(userId)
 
     this.quoteService.getMyQuotes(userId).subscribe({
       next: (response) => {

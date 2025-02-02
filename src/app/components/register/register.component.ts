@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../../service/user/user.service';
 import { MessageService } from 'primeng/api';
+import { DatabaseService } from '../../service/database/database.service';
 
 @Component({
   selector: 'register',
@@ -11,7 +12,7 @@ export class RegisterComponent {
 
   @Output() mode=new EventEmitter()  
 
-  constructor(private userService: UserService, private messageService: MessageService) { }
+  constructor(private userService: UserService, private messageService: MessageService,private database:DatabaseService) { }
 
   tempCode: any
   warnMsg!: string
@@ -28,10 +29,11 @@ export class RegisterComponent {
     this.userService.checkTempCode(this.tempCode).subscribe({
       next: (response) => {
         if (response.statusCode == 200) {
-          this.messageService.add({ severity: 'success', summary: 'Muvaffaqiyat', detail: 'Xush kelibsiz' });
-          localStorage.setItem("user", JSON.stringify(response.response))
-          localStorage.setItem("isUserRegistered", "true")
+          this.database.saveData("user",JSON.stringify(response.response))
+          this.database.saveData("isUserRegistered","true")
 
+          this.messageService.add({ severity: 'success', summary: 'Muvaffaqiyat', detail: 'Xush kelibsiz' });
+          
           this.mode.emit("add-quote")
         }
         else {
